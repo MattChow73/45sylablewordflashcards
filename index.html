@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reversible Flash Cards</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .flashcard-container {
+            perspective: 1000px;
+            margin: 10px;
+            width: 100%;
+            max-width: 300px;
+        }
+        .flashcard {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            transform-style: preserve-3d;
+            transition: transform 0.6s;
+            cursor: pointer;
+        }
+        .flashcard.flipped {
+            transform: rotateY(180deg);
+        }
+        .front, .back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            border: 2px solid #333;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+            padding: 10px;
+            text-align: center;
+            background-color: white;
+        }
+        .back {
+            transform: rotateY(180deg);
+            overflow-y: auto;
+        }
+        .front h2 {
+            font-size: 24px;
+            margin: 0;
+            color: #333;
+        }
+        .back h3 {
+            font-size: 18px;
+            margin: 5px 0;
+            color: #333;
+        }
+        .back p {
+            font-size: 14px;
+            margin: 5px 0;
+            color: #555;
+        }
+        .prefix {
+            color: blue;
+            font-weight: bold;
+        }
+        .suffix {
+            color: red;
+            font-weight: bold;
+        }
+        .middle {
+            color: black;
+        }
+        @media (max-width: 600px) {
+            .flashcard {
+                height: 350px;
+            }
+            .front h2 {
+                font-size: 20px;
+            }
+            .back h3 {
+                font-size: 16px;
+            }
+            .back p {
+                font-size: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Reversible Flash Cards</h1>
+    <!-- Original 4-Syllable Words -->
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Activity</h2>
+            </div>
+            <div class="back">
+                <h3>Activity</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">ac</span>-<span class="middle">tiv-i</span>-<span class="suffix">ty</span></p>
+                <p><strong>Meaning:</strong> The quality or state of being active; behavior or actions of a particular kind.</p>
+                <p><strong>Chinese:</strong> 活动</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Elevator</h2>
+            </div>
+            <div class="back">
+                <h3>Elevator</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">el</span>-<span class="middle">e-va</span>-<span class="suffix">tor</span></p>
+                <p><strong>Meaning:</strong> A platform or compartment housed in a shaft for raising and lowering people or things.</p>
+                <p><strong>Chinese:</strong> 电梯</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Economy</h2>
+            </div>
+            <div class="back">
+                <h3>Economy</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">e</span>-<span class="middle">con-o</span>-<span class="suffix">my</span></p>
+                <p><strong>Meaning:</strong> The structure or conditions of economic life in a country, area, or period.</p>
+                <p><strong>Chinese:</strong> 经济</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Intelligent</h2>
+            </div>
+            <div class="back">
+                <h3>Intelligent</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">in</span>-<span class="middle">tel-li</span>-<span class="suffix">gent</span></p>
+                <p><strong>Meaning:</strong> Having or indicating a high or satisfactory degree of intelligence.</p>
+                <p><strong>Chinese:</strong> 智能</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Conversation</h2>
+            </div>
+            <div class="back">
+                <h3>Conversation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">con</span>-<span class="middle">ver-sa</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> Oral exchange of sentiments, observations, opinions, or ideas.</p>
+                <p><strong>Chinese:</strong> 对话</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Application</h2>
+            </div>
+            <div class="back">
+                <h3>Application</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">ap</span>-<span class="middle">pli-ca</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The act of applying; a request or form for applying.</p>
+                <p><strong>Chinese:</strong> 应用</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Celebration</h2>
+            </div>
+            <div class="back">
+                <h3>Celebration</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">cel</span>-<span class="middle">e-bra</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The act of celebrating or marking a special event.</p>
+                <p><strong>Chinese:</strong> 庆祝</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Inspiration</h2>
+            </div>
+            <div class="back">
+                <h3>Inspiration</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">in</span>-<span class="middle">spi-ra</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> Something that stimulates creativity or thought.</p>
+                <p><strong>Chinese:</strong> 灵感</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Technology</h2>
+            </div>
+            <div class="back">
+                <h3>Technology</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">tech</span>-<span class="middle">nol-o</span>-<span class="suffix">gy</span></p>
+                <p><strong>Meaning:</strong> The application of scientific knowledge for practical purposes.</p>
+                <p><strong>Chinese:</strong> 技术</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Opportunity</h2>
+            </div>
+            <div class="back">
+                <h3>Opportunity</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">op</span>-<span class="middle">por-tu-ni</span>-<span class="suffix">ty</span></p>
+                <p><strong>Meaning:</strong> A favorable juncture of circumstances.</p>
+                <p><strong>Chinese:</strong> 机会</p>
+            </div>
+        </div>
+    </div>
+    <!-- New 4-Syllable Words -->
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Development</h2>
+            </div>
+            <div class="back">
+                <h3>Development</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">de</span>-<span class="middle">vel-op</span>-<span class="suffix">ment</span></p>
+                <p><strong>Meaning:</strong> The act or process of growing or improving.</p>
+                <p><strong>Chinese:</strong> 发展</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Information</h2>
+            </div>
+            <div class="back">
+                <h3>Information</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">in</span>-<span class="middle">for-ma</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> Knowledge communicated or received concerning a particular fact.</p>
+                <p><strong>Chinese:</strong> 信息</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Environment</h2>
+            </div>
+            <div class="back">
+                <h3>Environment</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">en</span>-<span class="middle">vi-ron</span>-<span class="suffix">ment</span></p>
+                <p><strong>Meaning:</strong> The surroundings or conditions in which a person, animal, or plant lives.</p>
+                <p><strong>Chinese:</strong> 环境</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Organization</h2>
+            </div>
+            <div class="back">
+                <h3>Organization</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">or</span>-<span class="middle">gan-i-za</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> A group of people working together for a purpose.</p>
+                <p><strong>Chinese:</strong> 组织</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Education</h2>
+            </div>
+            <div class="back">
+                <h3>Education</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">ed</span>-<span class="middle">u-ca</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The process of receiving or giving systematic instruction.</p>
+                <p><strong>Chinese:</strong> 教育</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Discovery</h2>
+            </div>
+            <div class="back">
+                <h3>Discovery</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">dis</span>-<span class="middle">cov-er</span>-<span class="suffix">y</span></p>
+                <p><strong>Meaning:</strong> The act of finding or learning something new.</p>
+                <p><strong>Chinese:</strong> 发现</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Community</h2>
+            </div>
+            <div class="back">
+                <h3>Community</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">com</span>-<span class="middle">mu-ni</span>-<span class="suffix">ty</span></p>
+                <p><strong>Meaning:</strong> A group of people living in the same place or having common interests.</p>
+                <p><strong>Chinese:</strong> 社区</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Democracy</h2>
+            </div>
+            <div class="back">
+                <h3>Democracy</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">de</span>-<span class="middle">moc-ra</span>-<span class="suffix">cy</span></p>
+                <p><strong>Meaning:</strong> A system of government by the whole population, typically through elected representatives.</p>
+                <p><strong>Chinese:</strong> 民主</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Television</h2>
+            </div>
+            <div class="back">
+                <h3>Television</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">tel</span>-<span class="middle">e-vi</span>-<span class="suffix">sion</span></p>
+                <p><strong>Meaning:</strong> A system for transmitting visual images and sound, or the device used for this.</p>
+                <p><strong>Chinese:</strong> 电视</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Comparison</h2>
+            </div>
+            <div class="back">
+                <h3>Comparison</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">com</span>-<span class="middle">par-i</span>-<span class="suffix">son</span></p>
+                <p><strong>Meaning:</strong> The act of comparing two or more things to note similarities and differences.</p>
+                <p><strong>Chinese:</strong> 比较</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Philosophy</h2>
+            </div>
+            <div class="back">
+                <h3>Philosophy</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">phi</span>-<span class="middle">los-o</span>-<span class="suffix">phy</span></p>
+                <p><strong>Meaning:</strong> The study of the fundamental nature of knowledge, reality, and existence.</p>
+                <p><strong>Chinese:</strong> 哲学</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Authority</h2>
+            </div>
+            <div class="back">
+                <h3>Authority</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">au</span>-<span class="middle">thor-i</span>-<span class="suffix">ty</span></p>
+                <p><strong>Meaning:</strong> The power or right to give orders or make decisions.</p>
+                <p><strong>Chinese:</strong> 权威</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Competition</h2>
+            </div>
+            <div class="back">
+                <h3>Competition</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">com</span>-<span class="middle">pe-ti</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The act of competing, as for profit or a prize.</p>
+                <p><strong>Chinese:</strong> 竞争</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Performance</h2>
+            </div>
+            <div class="back">
+                <h3>Performance</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">per</span>-<span class="middle">for-mance</span>-<span class="suffix">ance</span></p>
+                <p><strong>Meaning:</strong> The act of performing a task or function; a public presentation.</p>
+                <p><strong>Chinese:</strong> 表演</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Population</h2>
+            </div>
+            <div class="back">
+                <h3>Population</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">pop</span>-<span class="middle">u-la</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The total number of people inhabiting a specific area.</p>
+                <p><strong>Chinese:</strong> 人口</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Photography</h2>
+            </div>
+            <div class="back">
+                <h3>Photography</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">pho</span>-<span class="middle">tog-ra</span>-<span class="suffix">phy</span></p>
+                <p><strong>Meaning:</strong> The art or process of producing images by the action of light.</p>
+                <p><strong>Chinese:</strong> 摄影</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Association</h2>
+            </div>
+            <div class="back">
+                <h3>Association</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">as</span>-<span class="middle">so-ci-a</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> A group of people organized for a joint purpose.</p>
+                <p><strong>Chinese:</strong> 协会</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Generation</h2>
+            </div>
+            <div class="back">
+                <h3>Generation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">gen</span>-<span class="middle">er-a</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The production or creation of something; a group of individuals born around the same time.</p>
+                <p><strong>Chinese:</strong> 代</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Preparation</h2>
+            </div>
+            <div class="back">
+                <h3>Preparation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">prep</span>-<span class="middle">a-ra</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The act of making ready or being made ready for use.</p>
+                <p><strong>Chinese:</strong> 准备</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Security</h2>
+            </div>
+            <div class="back">
+                <h3>Security</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">se</span>-<span class="middle">cu-ri</span>-<span class="suffix">ty</span></p>
+                <p><strong>Meaning:</strong> The state of being free from danger or threat.</p>
+                <p><strong>Chinese:</strong> 安全</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Attention</h2>
+            </div>
+            <div class="back">
+                <h3>Attention</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">at</span>-<span class="middle">ten</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The act of directing the mind to listen, see, or understand.</p>
+                <p><strong>Chinese:</strong> 注意</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Experience</h2>
+            </div>
+            <div class="back">
+                <h3>Experience</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">ex</span>-<span class="middle">pe-ri</span>-<span class="suffix">ence</span></p>
+                <p><strong>Meaning:</strong> Practical contact with and observation of facts or events.</p>
+                <p><strong>Chinese:</strong> 经验</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Observation</h2>
+            </div>
+            <div class="back">
+                <h3>Observation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">ob</span>-<span class="middle">ser-va</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The action or process of closely monitoring something or someone.</p>
+                <p><strong>Chinese:</strong> 观察</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Regulation</h2>
+            </div>
+            <div class="back">
+                <h3>Regulation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">reg</span>-<span class="middle">u-la</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> A rule or directive made and maintained by an authority.</p>
+                <p><strong>Chinese:</strong> 规定</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Production</h2>
+            </div>
+            <div class="back">
+                <h3>Production</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">pro</span>-<span class="middle">duc</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The act of producing or manufacturing goods or services.</p>
+                <p><strong>Chinese:</strong> 生产</p>
+            </div>
+        </div>
+    </div>
+    <!-- Original 5-Syllable Words -->
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>University</h2>
+            </div>
+            <div class="back">
+                <h3>University</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">u</span>-<span class="middle">ni-ver-si</span>-<span class="suffix">ty</span></p>
+                <p><strong>Meaning:</strong> An institution of higher learning providing facilities for teaching and research.</p>
+                <p><strong>Chinese:</strong> 大学</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Electricity</h2>
+            </div>
+            <div class="back">
+                <h3>Electricity</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">e</span>-<span class="middle">lec-tric-i</span>-<span class="suffix">ty</span></p>
+                <p><strong>Meaning:</strong> A fundamental form of energy observable in positive and negative forms.</p>
+                <p><strong>Chinese:</strong> 电</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Pronunciation</h2>
+            </div>
+            <div class="back">
+                <h3>Pronunciation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">pro</span>-<span class="middle">nun-ci-a</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The act or manner of pronouncing something.</p>
+                <p><strong>Chinese:</strong> 发音</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Imagination</h2>
+            </div>
+            <div class="back">
+                <h3>Imagination</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">im</span>-<span class="middle">ag-i-na</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The act or power of forming a mental image of something not present.</p>
+                <p><strong>Chinese:</strong> 想象力</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Responsibility</h2>
+            </div>
+            <div class="back">
+                <h3>Responsibility</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">re</span>-<span class="middle">spon-si-bil</span>-<span class="suffix">i-ty</span></p>
+                <p><strong>Meaning:</strong> The state or fact of having a duty to deal with something.</p>
+                <p><strong>Chinese:</strong> 责任</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Individuality</h2>
+            </div>
+            <div class="back">
+                <h3>Individuality</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">in</span>-<span class="middle">di-vid-u-al</span>-<span class="suffix">i-ty</span></p>
+                <p><strong>Meaning:</strong> The quality or character that distinguishes a person or thing from others.</p>
+                <p><strong>Chinese:</strong> 个性</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Communication</h2>
+            </div>
+            <div class="back">
+                <h3>Communication</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">com</span>-<span class="middle">mu-ni-ca</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The act of conveying information from one person or group to another.</p>
+                <p><strong>Chinese:</strong> 沟通</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Administration</h2>
+            </div>
+            <div class="back">
+                <h3>Administration</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">ad</span>-<span class="middle">min-is-tra</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The management of an organization or government.</p>
+                <p><strong>Chinese:</strong> 管理</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Identification</h2>
+            </div>
+            <div class="back">
+                <h3>Identification</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">i</span>-<span class="middle">den-ti-fi-ca</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The act of identifying or the state of being identified.</p>
+                <p><strong>Chinese:</strong> 识别</p>
+            </div>
+        </div>
+    </div>
+    <!-- New 5-Syllable Words -->
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>International</h2>
+            </div>
+            <div class="back">
+                <h3>International</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">in</span>-<span class="middle">ter-na-tion</span>-<span class="suffix">al</span></p>
+                <p><strong>Meaning:</strong> Involving or occurring between two or more countries.</p>
+                <p><strong>Chinese:</strong> 国际</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Representation</h2>
+            </div>
+            <div class="back">
+                <h3>Representation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">rep</span>-<span class="middle">re-sen-ta</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The act of representing or the state of being represented.</p>
+                <p><strong>Chinese:</strong> 代表</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Consideration</h2>
+            </div>
+            <div class="back">
+                <h3>Consideration</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">con</span>-<span class="middle">sid-er-a</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> Careful thought, typically over a period of time.</p>
+                <p><strong>Chinese:</strong> 考虑</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Accommodation</h2>
+            </div>
+            <div class="back">
+                <h3>Accommodation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">ac</span>-<span class="middle">com-mo-da</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> A place to live or stay; the act of adapting or adjusting.</p>
+                <p><strong>Chinese:</strong> 住宿</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Investigation</h2>
+            </div>
+            <div class="back">
+                <h3>Investigation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">in</span>-<span class="middle">ves-ti-ga</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The act of examining something carefully to establish facts.</p>
+                <p><strong>Chinese:</strong> 调查</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Significance</h2>
+            </div>
+            <div class="back">
+                <h3>Significance</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">sig</span>-<span class="middle">nif-i-cance</span>-<span class="suffix">cance</span></p>
+                <p><strong>Meaning:</strong> The quality of being worthy of attention; importance.</p>
+                <p><strong>Chinese:</strong> 意义</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Interpretation</h2>
+            </div>
+            <div class="back">
+                <h3>Interpretation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">in</span>-<span class="middle">ter-pre-ta</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The action of explaining the meaning of something.</p>
+                <p><strong>Chinese:</strong> 解释</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Determination</h2>
+            </div>
+            <div class="back">
+                <h3>Determination</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">de</span>-<span class="middle">ter-mi-na</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> Firmness of purpose; the act of deciding definitely.</p>
+                <p><strong>Chinese:</strong> 决心</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Participation</h2>
+            </div>
+            <div class="back">
+                <h3>Participation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">par</span>-<span class="middle">tic-i-pa</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The act of taking part or sharing in something.</p>
+                <p><strong>Chinese:</strong> 参与</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Recommendation</h2>
+            </div>
+            <div class="back">
+                <h3>Recommendation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">rec</span>-<span class="middle">om-men-da</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The act of suggesting something as suitable or advisable.</p>
+                <p><strong>Chinese:</strong> 推荐</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Qualification</h2>
+            </div>
+            <div class="back">
+                <h3>Qualification</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">qual</span>-<span class="middle">i-fi-ca</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> A quality or accomplishment that makes someone suitable for a job or activity.</p>
+                <p><strong>Chinese:</strong> 资格</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Implementation</h2>
+            </div>
+            <div class="back">
+                <h3>Implementation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">im</span>-<span class="middle">ple-men-ta</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The process of putting a decision or plan into effect.</p>
+                <p><strong>Chinese:</strong> 实施</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Cooperation</h2>
+            </div>
+            <div class="back">
+                <h3>Cooperation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">co</span>-<span class="middle">op-er-a</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The process of working together to achieve a common goal.</p>
+                <p><strong>Chinese:</strong> 合作</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Documentation</h2>
+            </div>
+            <div class="back">
+                <h3>Documentation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">doc</span>-<span class="middle">u-men-ta</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> Material that provides official information or evidence.</p>
+                <p><strong>Chinese:</strong> 文档</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Discrimination</h2>
+            </div>
+            <div class="back">
+                <h3>Discrimination</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">dis</span>-<span class="middle">crim-i-na</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The unjust treatment of different categories of people.</p>
+                <p><strong>Chinese:</strong> 歧视</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Transformation</h2>
+            </div>
+            <div class="back">
+                <h3>Transformation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">trans</span>-<span class="middle">for-ma</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> A thorough or dramatic change in form or appearance.</p>
+                <p><strong>Chinese:</strong> 转变</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Concentration</h2>
+            </div>
+            <div class="back">
+                <h3>Concentration</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">con</span>-<span class="middle">cen-tra</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The action of focusing one’s attention or mental effort.</p>
+                <p><strong>Chinese:</strong> 集中</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Appreciation</h2>
+            </div>
+            <div class="back">
+                <h3>Appreciation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">ap</span>-<span class="middle">pre-ci-a</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> Recognition and enjoyment of the good qualities of someone or something.</p>
+                <p><strong>Chinese:</strong> 欣赏</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Evaluation</h2>
+            </div>
+            <div class="back">
+                <h3>Evaluation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">e</span>-<span class="middle">val-u-a</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The making of a judgment about the amount, number, or value of something.</p>
+                <p><strong>Chinese:</strong> 评估</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Contribution</h2>
+            </div>
+            <div class="back">
+                <h3>Contribution</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">con</span>-<span class="middle">tri-bu</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The act of giving or doing something to help a cause or effort.</p>
+                <p><strong>Chinese:</strong> 贡献</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Independence</h2>
+            </div>
+            <div class="back">
+                <h3>Independence</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">in</span>-<span class="middle">de-pen-dence</span>-<span class="suffix">dence</span></p>
+                <p><strong>Meaning:</strong> The state of being free from outside control or support.</p>
+                <p><strong>Chinese:</strong> 独立</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Continuation</h2>
+            </div>
+            <div class="back">
+                <h3>Continuation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">con</span>-<span class="middle">tin-u-a</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The act of carrying something on over time or without interruption.</p>
+                <p><strong>Chinese:</strong> 继续</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Modification</h2>
+            </div>
+            <div class="back">
+                <h3>Modification</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">mod</span>-<span class="middle">i-fi-ca</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The act of making a change to something.</p>
+                <p><strong>Chinese:</strong> 修改</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Configuration</h2>
+            </div>
+            <div class="back">
+                <h3>Configuration</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">con</span>-<span class="middle">fig-u-ra</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The arrangement of elements in a particular form or structure.</p>
+                <p><strong>Chinese:</strong> 配置</p>
+            </div>
+        </div>
+    </div>
+    <div class="flashcard-container">
+        <div class="flashcard" onclick="this.classList.toggle('flipped')">
+            <div class="front">
+                <h2>Anticipation</h2>
+            </div>
+            <div class="back">
+                <h3>Anticipation</h3>
+                <p><strong>Syllables:</strong> <span class="prefix">an</span>-<span class="middle">tic-i-pa</span>-<span class="suffix">tion</span></p>
+                <p><strong>Meaning:</strong> The act of expecting or looking forward to something.</p>
+                <p><strong>Chinese:</strong> 期待</p>
+            </div>
+        </div>
+    </div>
+    <script>
+        // No additional JavaScript needed as the flip is handled via CSS and onclick
+    </script>
+</body>
+</html>
